@@ -22,12 +22,16 @@ Simple Site made in Django
 
 [x] Create admin model in /app/admin.py
 
-[] SuperUser
+[x] SuperUser
 
-[] Tinymce4 installing via pip
+[x] Tinymce4 installing via pip
 
-[] tinymce installing in /root/settings.py
+[x] tinymce installing in /root/settings.py
 
-[] Config index.html
+[x] Config index.html and homepage view(render)
 
-[] base.html
+[x] base.html
+
+[] register.html page
+
+[] 
