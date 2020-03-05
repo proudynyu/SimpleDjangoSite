@@ -32,6 +32,20 @@ Simple Site made in Django
 
 [x] base.html
 
-[] register.html page
+[x] register.html page
 
-[] 
+[x] Create the register form
+
+[x] Manage the POST register
+
+[x] Manage if register give Error
+
+[x] Redirect homepage
+
+[x] Msg system
+
+[] Login & Logout
+
+[] Email form request
+
+[] Working with Foreign Key DB

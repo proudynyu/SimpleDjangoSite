@@ -12,20 +12,10 @@
     <title>Tutorials!</title>
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper grey darken-4">
-          <a href="#" class="brand-logo" style="margin-left: 20px;">Tutorials</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Community</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="register/">Register</a></li>
-          </ul>
-        </div>
-      </nav>
-
-    {% block content %}
-    {% endblock %}
+  {% include 'simplesite/includes/navbar.html' %}  
+  {% include 'simplesite/includes/messaging.html' %}
+  {% block content %}
+  {% endblock %}
     
 </body>
 </html>
