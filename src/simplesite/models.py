@@ -15,6 +15,7 @@ class TutorialCategory(models.Model):
 class TutorialSeries(models.Model):
     series = models.CharField(max_length=200)
     summary = models.CharField(max_length=200)
+    tut_category = models.ForeignKey(TutorialCategory, default=1, verbose_name="Category", on_delete=models.SET_DEFAULT)
 
     class Meta:
         verbose_name_plural = 'Series'
