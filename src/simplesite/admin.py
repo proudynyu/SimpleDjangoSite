@@ -7,7 +7,7 @@ class TutorialAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Title/date', {'fields' : ['title', 'date']}),
         ('URL', {'fields' : ['tutorial_slug']}),
-        ('Series', {'fields' : ['series']}),
+        ('Series', {'fields' : ['tut_series']}),
         ('Content', {'fields': ['description']})
     ]
 

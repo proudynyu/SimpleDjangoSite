@@ -1,15 +1,49 @@
 from django.shortcuts import render, redirect
-from .models import Tutorial
+from .models import Tutorial, TutorialCategory, TutorialSeries
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import NewUserForm
+from django.http import HttpResponse
+
+def single_slug(request, single_slug):
+    categories = [c.category_slug for c in TutorialCategory.objects.all()]
+    if single_slug in categories:
+        matching_series = TutorialSeries.objects.filter(tut_category__category_slug=single_slug)
+
+        series_urls = {}
+        for m in matching_series.all():
+            part_one = Tutorial.objects.filter(tut_series__series=m.series).earliest('date')
+            series_urls[m] = part_one.tutorial_slug
+
+        return render(
+            request,
+            'simplesite/category.html',
+            context={'tut_series':matching_series, 'part_ones':series_urls}
+            )
+
+    tutorials = [tut.tutorial_slug for tut in Tutorial.objects.all()]
+    if single_slug in tutorials:
+        this_tutorial = Tutorial.objects.get(tutorial_slug=single_slug)
+        tutorial_from_series = Tutorial.objects.filter(tut_series__series=this_tutorial.tut_series).order_by('date')
+        this_tutorial_idx = list(tutorial_from_series).index(this_tutorial)
+
+        return render(
+            request,
+            'simplesite/tutorial.html',
+            context={
+                'tutorial': this_tutorial,
+                'sidebar': tutorial_from_series,
+                'this_tut_idx': this_tutorial_idx}
+            )
+
+    return HttpResponse(f'{single_slug} does not exist')
 
 def homepage(request):
     return render(
         request,
-        'simplesite/homepage.html',
-        context={'tutorials': Tutorial.objects.all()}
+        'simplesite/categories.html',
+        context={'categories': TutorialCategory.objects.all()}
     )
 
 def register(request):
