@@ -27,6 +27,7 @@ class Tutorial(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     date = models.DateTimeField('Date', default=timezone.now())
+    tut_series = models.ForeignKey(TutorialSeries, default=1, verbose_name="Series", on_delete=models.SET_DEFAULT)
 
     tutorial_slug = models.CharField(max_length=200)
 
